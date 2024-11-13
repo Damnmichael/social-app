@@ -10,6 +10,7 @@ import { theme } from '../constant/theme'
 import Input from '../components/Input'
 import { useState, useRef } from 'react'
 import Button from '../components/Button'
+import { supabase } from '../lib/supabase'
 const Login = () => {
   const router = useRouter();
   const emailRef = useRef("");
@@ -21,7 +22,21 @@ const Login = () => {
     if (!emailRef.current || !passwordRef.current) {
       Alert.alert("Login", "Please fill all the fields!")
       return;
-      }
+    }
+     let email = emailRef.current.trim();
+    let password = passwordRef.current.trim();
+    setLoading(true);
+    const {error} = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+
+    setLoading(false);
+
+    console.log("error", error);
+    if (error) {
+      Alert.alert("Login", error.message);
+    }
    }
 
 
@@ -63,7 +78,7 @@ const Login = () => {
         </View>
         <View style={styles.footer}>
           <Text style={styles.footerText}>Don't have an account?</Text>
-          <Pressable>
+          <Pressable onPress={() => router.push("signUp")}>
             <Text style={[styles.footerText, {color:theme.colors.primaryDark, fontWeight:theme.font.semiBold}]}>Sign up</Text>
           </Pressable>
         </View>
