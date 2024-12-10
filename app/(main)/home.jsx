@@ -8,6 +8,7 @@ import { hp } from '../../constant/helpers/common';
 import { theme } from '../../constant/theme';
 import Icons from '../../assets/icons';
 import { useRouter } from 'expo-router';
+import Avatar from '../../components/Avatar';
 
 const Home = () => {
 
@@ -23,7 +24,7 @@ const onLogout = async () => {
   }
 }
   return (
-    <ScreenWrapper>
+    <ScreenWrapper bg="white">
       <View style={styles.container}>
         <View style={styles.header}>
           <Text style={styles.title}>Mhill</Text>
@@ -45,11 +46,11 @@ const onLogout = async () => {
               />
             </Pressable>
             <Pressable onPress={() => router.push("profile")}>
-              <Icons
-                name="user"
-                size={hp(3.2)}
-                strokeWidth={2}
-                color={theme.colors.text}
+              <Avatar
+              uri={user?.image}
+                size={hp(4.3)}
+                rounded={theme.radius.sm}
+                style={{borderWidth: 0.1}}
               />
             </Pressable>
           </View>
