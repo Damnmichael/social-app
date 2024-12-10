@@ -21,7 +21,7 @@ import Delete from './Delete'
 
 import Image from './Image'
 import Video from './Video'
-// import Logout from './Logout'
+import Logout from './Logout'
 
 import { theme } from '../../constant/theme'
 
@@ -44,7 +44,7 @@ const icons = {
   share: Share,
   send: Send,
   delete: Delete,
-  // logout: Logout,
+  logout: Logout,
   image: Image,
   video: Video,
   
